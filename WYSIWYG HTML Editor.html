@@ -1,0 +1,1134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>Radna strana</title>
+  <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1" >
+
+
+<style>
+
+*
+  {
+  margin:0;
+  padding:0;
+  }
+
+#info 
+  {
+  position:fixed;
+  background-color: black;
+  color: white;
+  padding: 25px 50px;
+  top:300px;
+  }
+
+button
+  {
+  transition: all ease 0.3s;
+  box-shadow: 0px 3px 0px #B0C4DE;
+  }
+
+button:active 
+  {
+  box-shadow: 0 1px 0 #ADD8E6;
+  top: 3px;
+  }
+
+.fakebutton
+ {
+ border: 2px solid;
+ border-radius: 16%;
+ height: 40px;
+ width: 120px;
+ opacity:0;
+ 
+ }  
+  
+.dugme1
+  {
+  border: 2px solid;
+  border-color:rgb(0, 103, 202);
+  border-radius: 16%;
+  height: 40px;
+  width: 120px;
+  background-color:white;
+  font-weight: 700;
+  text-align: center; 
+  display:block;
+  }
+
+.dugme2
+  {
+  border: 2px solid;
+  border-color: #87CEEB;
+  border-radius: 16%; 
+  height: 40px;
+  width: 120px;
+  background-color:white;
+  text-align: center; 
+  float:left;
+  }
+
+.U1
+  {
+  width:100%;
+  height:50px;
+  background-color:white;
+  }
+
+#U2
+  {
+  display:none; 
+  }
+  
+  
+#U4
+  {
+  display:none;
+  }
+
+ #U5, #U6,  #U7, #U8
+  { 
+  list-style:none;
+  display:none;
+  }
+  
+  #U3
+  { 
+  display:none;
+  list-style:none;
+  }
+
+/*Ovo sad 100 lista verovatno da se sred i grupise jednom klasom ali otom potom*/
+
+.L2
+  {
+  list-style:none;
+  display:block; 
+  opacity: 0.7;
+  }
+
+.L3
+  {
+  list-style:none;
+  display:inline-block;
+  }
+
+ul li:hover #U2 
+  {
+  float:left;
+  display:block;
+  //Bez pozadine liste ili elemenata liste iako radi ne mozes da vidis sta pise!
+  }
+  
+ul li:hover #U4 
+  {
+  display:block;
+  z-index:1;
+  position:absolute;
+  }
+
+ul ul li:hover #U5 
+  {
+  display:inline-block;
+  z-index:1;
+  position:absolute;
+  }
+
+ul ul li:hover #U3 
+  {
+  display:inline-block;
+  position:absolute;
+  }
+
+ul ul li:hover #U6 
+  {
+  display:inline-block;
+  z-index:1;
+  position:absolute;
+  }
+
+ul ul li:hover #U7 
+  {
+  display:inline-block;
+  z-index:1;
+  position:absolute;
+  }
+
+ul ul li:hover #U8 
+  {
+  display:inline-block;
+  z-index:1;
+  position:absolute;
+  }
+
+#textInput
+  {
+  width:100%; 
+  margin-top:2px;
+  margin-right:2px;
+  margin-bottom:2px;
+  margin-left:2px;
+  }
+
+iframe
+  {
+  //padding:10px 10px 10px 10px;
+  //Mozes i da granicu da stavis da je nevidljiva da bi mogao da prevuces pokazivacem i pokupis ID. I da bude sa svih strana. Poenta je da moze da se brisi na standardan nacin kao i sve ostalo samo je poent da se predje preko iframe.
+  }
+
+textarea
+  {
+  display:block;
+  }
+
+figure
+  {
+  padding:10px 10px 10px 10px;
+  }
+
+table 
+  {
+  background-color:orange;
+  border-style:solid;
+  border-width:2px;
+  border-color:red;
+  width:100px;
+  }
+
+td
+  {
+  text-align:center;
+  border-style:solid;
+  border-width:2px;
+  border-color:blue;
+  padding:10px 10px 10px 10px;
+  }
+
+.pom 
+  {
+  display:none;
+  //Skrivanje i i h JS promenljivih
+  }
+
+#UI 
+  {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  }
+
+#documentContainer
+  {
+  margin-left:10%;
+  margin-right:10%;
+  }
+
+.klasa1
+  {
+  background-color:rgb(247,247,247);
+  margin-bottom:20px;
+  font-size:18px;
+  font-weight:bold;
+  }
+
+.omotac1
+  {
+  padding:12px 12px 12px 12px;
+  border-left-style:solid;
+  border-left-width:5px; 
+  border-left-color:rgb(96,125,139);
+  background-color:rgb(247,247,247);
+  margin-bottom:12px;
+  }
+
+p
+ {
+ margin-bottom:12px;
+ text-align:justify;
+ }
+ 
+h1
+ {
+ margin-bottom:30px;
+ }
+
+h2
+ {
+ margin-bottom:25px;
+ }
+
+h3
+ {
+ margin-bottom:20px;
+ }
+
+h4
+ {
+ margin-bottom:15px;
+ }
+
+h5
+ {
+ margin-bottom:10px;
+ }
+
+.lista1
+  {
+  margin-bottom:12px;
+  list-style-type:circle;
+  padding-left:20px;
+  }
+
+.ggButton
+	{
+	border: 2px solid;
+	border-color:rgb(0, 103, 202);
+	background-color:white;
+	text-align: center; 
+	}  
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script  src="https://cdn.geogebra.org/apps/deployggb.js"></script >
+<!--Ovo za GeoGebru treba. Moras da stavis kao dva odvojena <script> inace ti ucita biblioteku i prebrise ceo JS kod koji si kucao. Zbog toga trebaju dva da se ucita bibloteka i onda da se ucita tvoj JS kod.-->
+
+<script>
+var i;
+var h;
+var id="Without id!";
+var tableId="Without id!";
+var linkHelpIndicator= false;
+var paragrapshAreEditable =true;
+var url;
+var appletId="Applet without id!"; // Capture id of last ggApllet that was clicked on.
+var replacementNode;
+var buttonIdCounter;
+
+
+// Umesto nodName, bolje koristiti tagName jer nodName pored imena vraca jos neke stvari.
+
+/*window.onload = function() 
+  //Stavio sam da se cela scripta ucita nakon HTML
+  {
+  // Getting 'Info' div in js hands
+  var ekran= document.getElementById('info');
+  // Creating function that will tell the position of cursor
+  // PageX and PageY will getting position values and show them in P
+  function tellPos(p)//Nacin na koji je upotrebljena ova funkcija moze ti biti korisno
+  {
+  ekran.innerHTML = 'Position X : ' + p.pageX + '<br />Position Y : ' + p.pageY;
+  }
+  addEventListener('mousemove', tellPos, false);
+  //Ova upotreba siri mogucnosti!
+  }
+*/
+//Funkcija koja uzima ID elementa na klik.
+function ResetId()
+  {
+  id="Without id!";
+  }
+
+function GetId(event) // Function that capture elemnt id on click
+	{
+	id="Without id!";
+	var htmlElement=document.getElementById(event.target.id);
+
+	if(event.target.id != "")
+		{
+		if((htmlElement.nodeName=="IFRAME")||(htmlElement.nodeName=="FIGCAPTION"))
+			{
+			id=htmlElement.parentElement.id;
+			}
+		else
+			{
+			id=event.target.id; 
+			}
+		}
+  //alert(id);
+	}
+
+addEventListener('click', GetId, false);	
+	
+function GetAppletId(event) //Funkcija koja sluzi za uzimanje ID elementa. 
+	{
+	var htmlElement=document.getElementById(event.target.id);
+	if(htmlElement != null)
+		{
+		if(htmlElement.tagName == "FIGURE")
+			{
+			var figureNodes=htmlElement.childNodes;
+		
+			for (var node of figureNodes)
+				{
+				if(node.className == "applet_scaler")
+					{
+					appletId=node.firstChild.id; // In DIV element with class = applet_scaler should contain article element with id that have same name as GGApplet object
+					}
+				}
+			}
+		}	
+	//alert(appletId);
+	}
+	
+addEventListener('click', GetAppletId, false); // You simply on one event you bind two function that will activate on that same event
+
+
+function ChangeConstructionStep(constructionStep, ggAppletId)
+	{
+	alert(ggAppletId);
+	//window[appletId];
+	try 
+		{
+		alert("var " + ggAppletId + ".SetConstructionStep(constructionStep);");
+		eval(appletId + ".setConstructionStep(constructionStep);"); // Commands and call for function in GeoGebra API are named differently in JavaScript for example first letters of function are lower case
+																	// Same case is with HTML and CSS atributes, they are bit different when they are accessed trough JavaScript
+		}
+	catch(err)
+		{
+		document.getElementById("demo").innerHTML = err.message;
+		}
+		//appletId.SetConstructionStep(constructionStep);
+	}
+
+
+function HelperFunction()
+	{
+	alert(i);
+	alert(h);
+	}
+
+function saveHtmlDocument() 
+	{
+	var documentName=prompt("Unesi ime dokumenta");
+	var htmlContent = [document.documentElement.innerHTML];
+	var blob = new Blob(htmlContent, {type: "text/html;charset=utf-8"});
+	var link = document.createElement("a");
+	link.href = URL.createObjectURL(bl);
+	link.download = documentName +".html";
+	link.hidden = true;
+	document.body.appendChild(a);
+	link.innerHTML = "something random - nobody will see this, it doesn't matter what you put here";
+	link.click();
+	}
+
+function tableAligment(alignmentType, alignment, tableId) // Poravnjanje tabele
+	{
+	if (alignmentType == "inParagraph")
+		{
+		if(alignment =="l")
+			{
+			tableId.style.margin="0";
+			tableId.style.float="left";
+			tableId.style.margin="10px 10px 10px 10px";
+			}
+		else
+			{
+			tableId.style.float="none";
+			tableId.style.margin="0";
+			tableId.style.float="right";
+			tableId.style.margin="10px 10px 10px 10px";
+			}
+		}
+	else
+		{
+		if(alignment =="l")
+			{
+			tableId.style.float="none";
+			tableId.style.marginLeft='0px';
+			tableId.style.marginRight='auto';
+			}
+		else if(alignment =="d")
+				{
+				tableId.style.float="none";
+				tableId.style.marginRight='0px';
+				tableId.style.marginLeft='auto';	//Popunjava do kraja praznine
+				} 
+			else
+				{
+				tableId.style.float="none";
+				tableId.style.display="table";
+				tableId.style.margin="0 auto";
+				}
+		}
+	}
+
+function InsertDivBeforeOtherElement()
+	{
+	var figureCollection=document.getElementsByTagName('figure');
+	
+	for(var index=0; index <figureCollection.length; index++)
+		{
+		var figure=figureCollection[index];
+		var figureNodes=figure.childNodes;
+
+		if (figureNodes[1].nodeName=="DIV")
+			{
+			figureNodes.insertBefore(figureNodes[1],figureNodes[0]);
+			}
+		}
+	}
+
+function InsertElementBeforeOtherElement() //Istrazivanje cvorova tj. sta se nalazi u elementu i dublje!
+	{
+	var element=document.getElementById(id);
+	var elementNodes=element.childNodes;
+  
+	element.insertBefore(elementNodes[1],elementNodes[0]);
+	}
+
+function textAlign(alignment)
+	{
+	var element=document.getElementById(id);
+	switch (alignment)
+		{
+		case "l":
+			element.style.textAlign="left";
+			break;
+		case "r":
+			element.style.textAlign="right";
+			break;
+		case "c":
+			element.style.textAlign="center";
+			break;
+		case "j":
+			element.style.textAlign="justify";
+			break;
+		default:
+			break;
+		}
+	}
+
+function IframeAlignment(alignmentType, alignment)
+	{
+	var percent;
+	var iframe=document.getElementById(id);
+	var iframeNodes=iframe.childNodes;
+	
+	if(iframeNodes[1].nodeName=="DIV")
+		{
+		alert(iframe.parentNode); 		//Za ggAplet DIV je postavljena duzina kao CSS svojstvo.
+		var div=iframeNodes[1]; 
+		percent=((iframe.parentNode.clientWidth - div.style.width.slice(0, -2))/iframe.parentNode.clientWidth)*100;
+		}
+	else
+		{
+		alert(iframe.parentNode.clientWidth ); //Kod ifram duzina i visina je js svojstvo elementa i u HTML5 standardima
+		var childIframe=iframe.firstChild;
+		percent=((iframe.parentNode.clientWidth - childIframe.offsetWidth)/iframe.parentNode.clientWidth)*100;
+		}
+    
+	
+	if ((iframe.nodeName=="UL") || (iframe.nodeName=="OL"))
+		{
+		tableAligment(alignmentType, alignment, iframe);
+		}
+	else
+		{	
+		if (alignmentType == "inParagraph") //Moramo sam da izbacim px iz duzine da bi mogao lepo da racunam
+			{
+			if(alignment=="l")
+				{
+				iframe.style.margin="0";
+				iframe.style.float="left";
+				iframe.style.margin="10px 10px 10px 10px";
+				}
+			else
+				{
+				iframe.style.margin="0";
+				iframe.style.float="right";
+				iframe.style.margin="10px 10px 10px 10px";
+				}
+			}
+		else
+			{
+			if(alignment=="l")
+				{
+				percent= percent+"%";
+				iframe.style.float="none";
+				iframe.style.marginLeft='0px';										//iframe.style.marginRight="auto";
+				iframe.style.marginRight=percent;
+				}
+			else if(alignment=="d")
+					{  
+					percent= percent+"%";
+					iframe.style.float="none";
+					iframe.style.marginRight='0px';
+					iframe.style.marginLeft=percent;								//iframe.style.marginLeft="auto";
+					} 
+				else
+					{   
+					percent=percent/2+"%";
+					iframe.style.float="none";
+					iframe.style.marginLeft=percent;
+					iframe.style.marginRight=percent;
+					}
+			}
+		}
+	}
+
+function SetObjectDimension() //Object: iframe, picture
+	{
+	var element=document.getElementById(ID);
+
+	if(element.nodeName=="FIGURE") //Ime elementa velikim slovima
+		{
+		var width =prompt("Unesi dužinu");
+		var height=prompt("Unesi visinu");
+
+		var figureNodes=element.childNodes;
+
+		figureNodes[0].width = width;
+		figureNodes[0].height= height;
+		}
+	}
+
+function CreateElement(typeOfFirstElement, typeOfSecondElement) 	//typeOfSecondElement: iframe, applet, table
+	{																//typeOfFirstElement: div, list, paragraph, figure, headings
+	var textInput =	"textInput";
+	var firstElement = typeOfFirstElement + 'HTMLElement' + i;
+	var firstElementId = typeOfFirstElement + 'ID1' + i;
+	
+	eval('var firstElement =document.createElement(' +'typeOfFirstElement'+');');
+	documentContainer.appendChild(firstElement);
+	firstElement.id=firstElementId;
+
+	if(typeOfFirstElement =='div')
+		{
+		firstElement.innerHTML='<p id="'+'pao'+i+'"class="klasa1">Unesi ime omotača</p> <p id="'+'pa'+i+'">Placeholder</p>' ;
+		firstElement.style.width="100%";
+		firstElement.className="omotac1";
+		}
+
+	if (typeOfFirstElement =="ul")
+		{
+		var broj=prompt("Uneti broj elemenata");
+		for (var listElementNumber = 0; listElementNumber<broj; listElementNumber++)
+			{
+			var li=document.createElement('li');
+			var content=prompt("Uneti sadrzaj elementa liste");
+			firstElement.appendChild(li);
+			li.innerHTML=content;
+			}
+
+		firstElement.className="lista1";
+		}
+
+	if (typeOfFirstElement == "figure")
+		{
+		var caption ='caption' + h;
+		var captionId ='captionId' + h;
+		var captionContent=prompt("Unesi opis"); 
+
+		if((typeOfSecondElement=="iframe")||(typeOfSecondElement=="img")||(typeOfSecondElement=="applet"))
+			{
+			var secondElementUrl = prompt("Unesi url adresu");  //Ako nece caption da ne pisu nista ili ubacis if da se ne pravi u tom slucaju
+			}
+
+		if (typeOfSecondElement == "applet")
+			{
+			var width = prompt("Unesi dužinu");
+			var height = prompt("Unesi visinu");
+
+			var secondElementId = typeOfSecondElement +'ID2' + h;
+
+			var GGAplikacija=  new GGBApplet({"appName": "graphing", "width":width, "height": height, "showToolBar": true, "showAlgebraInput": true, "showMenuBar": true, "material_id":secondElementUrl.slice(27),"id":secondElementId}, true);
+
+			GGAplikacija.inject(firstElementId);
+			} //window.addEventListener("load", function() { GGAplikacija.inject(pom1);}); Ovo je kada se ucitava HTML stranica a mi hocemo odmah. U svakom slucaju ovo moze da se opet koristi kada su stranice na serveru ali sad kad treba da vidimo kako izgleda ovako nam odgovara.
+		else
+			{
+			var secondElement = typeOfSecondElement + 'HTMLElement' + h;
+			var secondElementId = typeOfSecondElement + 'ID2' + h;
+		
+
+			eval('var secondElement =document.createElement(' +'typeOfSecondElement'+')');
+			document.getElementById(firstElementId).appendChild(secondElement);
+			secondElement.id=secondElementId;
+
+			if (typeOfSecondElement == "iframe")
+				{
+				document.getElementById(secondElementId).src= MakeYouTubeLink(secondElementUrl);
+				document.getElementById(secondElementId).width="640";
+				document.getElementById(secondElementId).height="480";
+				}
+			else
+				{
+				document.getElementById(secondElementId).src=secondElementUrl;
+				document.getElementById(secondElementId).width="640";
+				document.getElementById(secondElementId).height="480";
+				}
+			}
+
+    if (typeOfSecondElement == 'table')
+		{
+		var secondElement = typeOfSecondElement + 'HTMLElement' + h;
+		var secondElementId = typeOfSecondElement + 'ID2' + h;
+		
+		eval('var secondElement =document.createElement(' +'typeOfSecondElement'+')');
+		secondElement.id=secondElementId;
+
+		var numberOfRows = prompt("Uneti broj redova");
+		var numberOfColums = prompt("Uneti broj kolona");
+
+		for (var rowNumber=0; rowNumber < numberOfRows; rowNumber++)
+			{
+			var tr = document.createElement('tr');
+			secondElement.appendChild(tr);
+			
+			for (var columnNumber=0; columnNumber<numberOfColums; columnNumber++)
+				{
+				var td=document.createElement('td');
+				tr.appendChild(td);
+				var content=prompt("Uneti sadržaj ćelije");
+				td.innerHTML=content;
+				}
+			}
+			
+		firstElement.appendChild(secondElement);
+		secondElement.id=secondElementId;
+		secondElement.className="tabela1";
+
+		firstElement.removeChild(firstElement.firstChild);/*Stvaraju ti se dve tabele sa istim ID-em. Prva ima automatsku dimenziju 640.Zato brisemo prvu da bi mogli pravilno da pozicioniramo. Istrazi to ako opet ne bdue nesto radilo.*/
+		}
+
+    eval('var caption =document.createElement("figcaption")');
+    firstElement.appendChild(caption);
+	
+    caption.id=captionId;
+    caption.innerHTML=captionContent;
+	
+    h++;
+    document.getElementById("h").innerHTML = h;
+    } 
+  
+	if (id != "Without id!")   
+		{
+		var htmlElement = document.getElementById(id)
+		htmlElement.parentNode.insertBefore(document.getElementById(firstElementId), htmlElement);
+		id = "Without id!";
+		}
+
+	if ((typeOfFirstElement == 'p') ||(typeOfFirstElement[0]=='h'))
+		{
+		document.getElementById(firstElementId).onmouseup=MakeLink();
+		document.getElementById(firstElementId).innerHTML=document.getElementById(textInput).value; //U html-u je  contenteditable a JS contentEditable //Vodi računa kada se završi sa izradom lekcije da namestiš da za sve paragrafe ovaj atribut bude false tj. da više ne može da se menja!
+		}
+		
+	i++; //Drugi nacin da se igrade funkcije je putem addEventListener!
+	document.getElementById("i").innerHTML=i;
+
+	id = "Without id!";
+	}
+
+function deleteElement()
+	{	
+	if(id !="documentContainer") //Celom kodu treba sredjivanja za sada cista sitnica da se ne desi da se izbrise sve
+		{
+		var element=document.getElementById(id);
+		element.parentNode.removeChild(document.getElementById(id));
+		id = "Without id!";
+		} //Pomocu parentNode pametnije brisemo elemnt jer mozemo da idemo u dubinu stabla i brisemo
+	}
+
+function MakeYouTubeLink(url) 
+	{
+	return url.replace("https://www.youtube.com/watch?v=","https://www.youtube.com/embed/");
+	}
+
+function EnableParagraphsAndHeadingsEditing() //Iskljucuje da moze da se pristupi paragrafima ali moze da se modifikuje za sve.
+	{
+	var paragraphCollection=document.getElementsByTagName("p");
+
+	if (paragrapshAreEditable == true)
+		{
+		for (var paragraphNumber=0; paragraphNumber<paragraphCollection.length; paragraphNumber++)
+			{
+			paragraphCollection[paragraphNumber].contentEditable= "false";
+			}
+			
+		EnableHeadingsEditing("false");
+		paragrapshAreEditable = false;
+		} 
+    else 
+		{
+		for (var paragraphNumber=0; paragraphNumber<paragraphCollection.length; paragraphNumber++)
+			{
+			paragraphCollection[paragraphNumber].contentEditable = "true";
+			} 
+			
+		EnableHeadingsEditing("true");
+		paragrapshAreEditable= true;
+		} 
+ 
+	id = "Without id!";  //Uzima se elementu ID pri izmeni paragrafa pa da anuliramo to pri zavrsetku izmene
+	}
+
+function EnableHeadingsEditing(headingEditable) //promena naslova
+	{
+	for (var headingSize=1; headingSize<7; headingSize++)
+		{
+		var headingCollecton=document.getElementsByTagName("h" + headingSize);
+		
+		for (headingNumber=0; headingNumber<headingCollecton.length; headingNumber++)
+			{
+			headingCollecton[headingNumber].contentEditable = headingEditable;
+			}
+		}
+	}	
+	
+function EnableLinkCreation() // Support function for MakeLink
+	{
+	linkHelpIndicator = true;
+	url = prompt("Unesi url adresu ");
+	}		
+	
+function MakeLink()
+	{
+    if (linkHelpIndicator == true)
+		{ 
+		document.execCommand("createLink", false, url);
+		linkHelpIndicator =false;
+		}
+    }
+
+function EnableHTMLElementEditing() //Da se sadrzaj menja za pojedinacni element
+	{
+	var element=document.getElementById(id);
+
+	if (element.contentEditable == "true")
+		{
+		element.contentEditable = "false";
+		}
+	else
+		{
+		element.contentEditable="true";
+		}
+	}
+	
+function GetAllTextNodes()
+	{
+	var pom=document.getElementById(id).childNodes;
+	alert(pom.length);
+	
+	for(var pom1=0; pom1<pom.length; pom1++)
+		{
+		alert(typeof pom[pom1]);
+		alert(pom[pom1].nodeValue);
+		}
+	}
+
+function SplitTextNode()
+	{
+	Selection = window.getSelection();
+	alert((Selection.anchorNode).nodeName);
+	var node = Selection.anchorNode;
+	
+	var start=Selection.anchorOffset;
+	var end=Selection.focusOffset;
+	replacementNode=node.splitText(end);
+	
+	return replacementNode;
+	}	
+
+function CreateGGButton() // Create button and insert button in text on selected position. Also set on click function and PASS CURRENT(in time of creation of button )appletId as permant to this button.
+	{
+	var buttonText=prompt("Uneti tekst za dugme");
+	var constructionStep=prompt("Uneti korak");
+	
+	var button=document.createElement("BUTTON");
+	var replacementNode=SplitTextNode();
+	var textNode0=document.createTextNode(" ");
+	var textNode1=document.createTextNode(" ");
+	
+	button.innerHTML= buttonText;
+	button.id=buttonIdCounter;
+	button.setAttribute("onclick","ChangeConstructionStep("+constructionStep+","+appletId+")"); 
+	
+	button.classList.add("ggButton"); // Or button.className="dugme1";
+	var parentNode=replacementNode.parentNode; 
+	parentNode.insertBefore(button,replacementNode);
+	parentNode.insertBefore(textNode0,button);
+	parentNode.insertBefore(textNode1,replacementNode);	
+	buttonIdCounter++;
+	document.getElementById("buttonIdCounter").innerHTML = buttonIdCounter;	
+	}
+</script>
+
+
+</head>
+<body>
+
+<div id="UI" onclick="event.cancelBubble=true;">
+<ul class='U1'>
+  <li class='L3'>
+    <button class="dugme1" type="button">Napravi</button>
+    <!--Dodajemo span da bi mogli lepo da ga dizajniramo nema neku funkcionalnu ulogu -->
+    <ul id='U2'>
+      <li class='L2'>
+        <button class="dugme2" type="button">Naslov</button>
+        <ul id='U3'>
+          <li class='L4'> 
+             <button class="dugme2" type="button" style="font-size: 15px;" onclick="CreateElement('h1')" >Naslov</button>
+          </li>
+          <li class='L4'>
+            <button class="dugme2" type="button" style="font-size: 13px;" onclick="CreateElement('h2')" >Naslov</button>
+          </li>
+          <li class='L4'> 
+            <button class="dugme2" type="button" style="font-size: 11px;" onclick="CreateElement('h3')" >Naslov</button>
+          </li>
+          <li class='L4'>
+            <button class="dugme2" type="button" style="font-size: 10px;" onclick="CreateElement('h4')" >Naslov</button>
+          </li>
+          <li class='L4'>
+            <button class="dugme2" type="button" style="font-size: 7px;" onclick="CreateElement('h5')" >Naslov</button>
+          </li>
+          <li class='L4'> 
+            <button class="dugme2" type="button" style="font-size: 6px;" onclick="CreateElement('h6')" >Naslov</button>
+          </li>
+        </ul>
+      </li>
+      <li class='L2'>
+        <button class="dugme2" type="button" onclick="CreateElement('p')">Paragraf</button>
+        <ul id='U7'>
+		  <li class='L4'>
+            <button class="fakebutton">  FakeButton</button> 
+          </li>
+          <li class='L4'>
+            <button class="dugme2" type="button" onclick="textAlign('l')">Levo</button> 
+          </li>
+          <li class='L4'>
+            <button class="dugme2" type="button" onclick="textAlign('r')">Desno</button>
+          </li>
+          <li class='L4'>
+            <button class="dugme2" type="button" onclick="textAlign('c')">Centrirano</button>
+          </li>
+          <li class='L4'>
+            <button class="dugme2" type="button" onclick="textAlign('j')">Ravnomerno</button>
+          </li>
+        </ul>
+      </li>
+      <li class='L2'>
+        <button class="dugme2" type="button" onclick="EnableLinkCreation()">Link</button>
+      </li>
+      <li class='L2'>
+        <button class="dugme2" type="button" onclick="CreateElement('figure','img')">Sliku   
+        </button>
+      </li>
+      <li class='L2' >
+        <button class="dugme2" type="button" onclick="CreateElement('figure','iframe')">Video
+        </button>
+      </li>
+      <li class='L2'>
+        <button class="dugme2" type="button" >Aplet</button>
+         <ul id='U8'>
+		 <li class='L4'>
+            <button class="fakebutton">  FakeButton</button> 
+          </li>
+		  <li class='L4'>
+            <button class="fakebutton">  FakeButton</button> 
+          </li>
+		  <li class='L4'>
+            <button class="fakebutton">  FakeButton</button> 
+          </li>
+		  <li class='L4'>
+            <button class="fakebutton">  FakeButton</button> 
+          </li>
+		  <li class='L4'>
+            <button class="fakebutton"> FakeButton</button> 
+          </li>
+          <li class='L4'>
+            <button class="dugme2" type="button" onclick="CreateElement('figure','iframe')" style="font-size: 13px;">Bez interakcije</button> 
+          </li>
+          <li class='L4'> 
+            <button class="dugme2" type="button" onclick="CreateElement('figure','applet')" style="font-size: 11px;">Sa interakcijom</button> 
+          </li>
+        </ul>
+      </li>
+      <li class='L2' >
+        <button class="dugme2" type="button" onclick="CreateElement('figure','table')">Tabelu 
+        </button>
+      </li>
+      <li class='L2' >
+        <button class="dugme2" type="button" onclick="CreateElement('ul')">Listu 
+        </button>
+      </li>
+      <li class='L2' >
+        <button class="dugme2" type="button" onclick="CreateElement( 'div') ">Omotač 
+        </button>
+      </li>
+    </ul>
+  </li>
+  <li class='L3'>
+    <button class="dugme1" type="button">Pozicija</button>
+    <ul id='U4'>
+          <li class='L2'> 
+            <button class="dugme2" type="button">U paragrafu
+            </button>
+            <ul id='U5'>
+              <li class='L4'>
+                <button class="dugme2" type="button" onclick="IframeAlignment('inParagraph','l')">Levo
+                </button> 
+              </li>
+              <li class='L4'>
+                <button class="dugme2" type="button" onclick="IframeAlignment('inParagraph','d')">Desno
+                </button>  
+              </li>
+            </ul>
+          </li>
+          <li class='L2'>
+            <button class="dugme2" type="button">Samostalno
+            </button> 
+            <ul id='U6'>
+			  <li class='L4'>
+				<button class="fakebutton"> FakeButton</button> 
+			  </li>
+              <li class='L4'>
+                <button class="dugme2" type="button" onclick="IframeAlignment('outOfParagraph','l')">Levo
+                </button>  
+              </li>
+              <li class='L4'>
+                <button class="dugme2" type="button" onclick="IframeAlignment('outOfParagraph','c')">Centar
+                </button> 
+              </li>
+              <li class='L4'>
+                <button class="dugme2" type="button" onclick="IframeAlignment('outOfParagraph','d')">Desno
+                </button> 
+              </li>
+            </ul>
+          </li>
+    </ul>
+  </li>
+  <li class='L3'>
+    <button class="dugme1" type="button" onclick="saveHtmlDocument()">Sačuvaj</button>
+  </li>
+  <li class='L3'>
+    <button class="dugme1" type="button" onclick='deleteElement()'>Briši</button>
+  </li>
+  <li class='L3' >
+    <button class="dugme1" type="button" onclick='EnableParagraphsAndHeadingsEditing()' style="font-size: 11px;">Izmena paragrafa
+    </button>
+  </li>
+  <li class='L3'>
+    <button class="dugme1" type="button" onclick='SetObjectDimension()' style="font-size: 11px;">Promeni dimenzije
+    </button>
+  </li>
+  <li class='L3' >
+    <button class="dugme1" type="button" onclick='HelperFunction()'> Ne diraj!</button>
+  </li>
+  <li class='L3' >
+    <button class="dugme1" type="button" onclick='ResetId()'> Resetuje ID</button>
+  </li>
+</ul>
+
+<textarea id='textInput'  rows="4" cols="50" >
+</textarea >
+</div>
+
+<div id="documentContainer" onmouseup="MakeLink()"> </div>
+
+<div id="i" class="pom">
+0
+</div>
+
+<div id="h" class="pom">
+0
+</div>
+
+<div id="buttonIdCounter" class="pom">
+0
+</div>
+
+<button class="dugme1" type="button" onclick='ChangeConstructionStep(5)' style="font-size: 11px;">ApppletTest</button>
+<button class="dugme1" type="button" onclick='CreateGGButton()' style="font-size: 11px;">pom</button>
+<div id="demo" >
+Ovde treba da se ispise greska!
+</div>
+
+<!--Sto se tice iframovanja videa  evo gore primera kako youtube daje kod za embedovanje. Poenta je da kad gledas video pise watch?v=pa neki kod a kad embedujes embed/pa neki kod. Tebi treba ovo drugo -->
+<!--Video radi za youtube sto mislim da je sasvim dovoljno. Ako postoje neke druge zelje onda je stvar dogovora. Ako hoce bilo koji video onda Kucaj how to embed random video using js ili tako nesto. Ako hoces da uploduje to je onda i najlakse ali ne evrujem da bi neko cuvako na sereveru matfa bilo sta -->
+
+<!-- inerHTML kao što mu ime kaže predstavlja html kod koji se priučitavanju parsira i prikazuje kao standardni html kod!-->
+
+<!--document.designMode = "on"; Omogucava da seo dokument bude izmenljiv. Ono sto je preporuka da se onaj deo koji moze da se menja bude uokviren u okviru nekog div-a. Kako se ne bi brljalo. Moze i da se stavi contentEditable pa elementi koji se nalaze u njemu da imaju svojstvo inherit. Na taj nacin elegantnije mozes da kontrolise kad je izmenljivo a kada nije.-->
+
+<!--Ne moze preko id vise od jedne textarea poent da ih pokupis preko niza koji se dobija pomocu getElementsByTagName ili getElementsByClassName. Mozda ima veze problem sa ispod navedenim?-->
+
+<!--JS scripta se ucitava pre same html stranice. Ovo znaci da ne mozes da pristupis DOM stablu niti njegovim elementima jer oni nisu ucitani. Ono sto tebi deluje da moze to je zato sto je to definisoano u funkcijama koje pozivas tj. uglavnom neke dinamicke interakcije sa web stranicom tj. nakon sto je stranica ucitana. Resenje je da scritu postavis na kraju html dokumenta tako da se prvo HTML ucita pa onda JS!(This is because the script runs before the page has rendered.)-->
+
+<!--CSS svojstvima se pristupa preko style. vodi racuna o tome! Znaci CSS atributima, oni koji se definisu u CSS a nisu i HTML atributi se pristupa preko style.! -->
+
+<!--Gleda gornji levi cosak kad pozicionira elemente!-->
+
+<!--U JS imena CSS atributa koja se sastoje iz dve reci, druga rec pocinje velikim slovom!-->
+
+<!-- Ako postavis poition absolute a ne stavis top itd. onda ce automatski podrazumevati da je 0 sve. Vodi racuna o tome! Znaci ako napravis tri paragrafa sa absolute a ne stavis im vrednosti pozicije. Onda ce sva tri imati 0 sve vrednosti i preklapace se jedan preko drugog!-->
+
+<!-- Pazi float svojstvo ti samo funkcionise da smesti elemenat na jednu stranu i ako je block elemennat da visak prostora oslobodi kako bi drugi elemenat mogao da uleti u prazan prostor nista vise. Na taj način mogu da se popune prazan prosto u sadržaju jt."rupe" koje ostaju za block elemntima. Bitno je da razumš pozicioniranje elmenata u html dokumentu tj. flow of document! Uvek naredni elemenat u dokuumentu ulece posle flow elemenata. Tim redosledom se popunjava prazan prostor. Skapiraj dobro sem pozicioniranja block i inline elemenata i njihove osobine. Pogledaj css svojstvo display i kako mozes da upotrebis.-->
+
+<!--Ako su bas paragrafi veliki a hoces bas u odredjenom delu paragrafa video onda je dovoljno da razbije paragraf do tog dela ubaci video i nastavi dalje.-->
+
+<!--U CSS atributi koji su se sastojali od dve reci bili su rayzdvojeni sa -. U js css atributi koji imaju dve reci se nazivaju isto samo su reci spojene i druga rec pocinje velikim slovom-->
+
+<!--<div id='info'></div>-->
+
+<!--Standardan nacin da debagujes kod je preko neko izlaza, npr. alert() funckije!-->
+
+<!--Koliko mogu videti dimenzije figura se autoamtski prilagodjavaju dimenzijama sadrzaja unutra.-->
+
+<!--Ovo sa figure moze da se koristi kao wraper tj. samo se zamenim standardnim divo-om.-->
+
+<!--Ako hoces da vidis kako funcionisu margine i block i inline elemnti oboj pozadinu u neku boju i vidi kako izgleda. Ja sam bojio u crveno.-->
+
+<!-- Vrednost iz textarea kad ubacis u paragraf moze da bude obican TEXT ili moze da bude HTML kod koji se tumaci najstandardnije!!! Ovo pruza nove mogucnosti!-->
+
+<!--Ovaj wraper odlicno funkcionise a provalio sam zahvaljuci tome kako funkcionise u obicnom html pa onda ga automatizujes za dinamicki. Za to mi je pomogao obojena pozadina html elemenata da bi znao kako se ponasaju html elemnti u interakciji jedni sa drugima.-->
+
+<!-- Sve sto se tice izgleda i raznih sitnica moze kasnije da se sredi jednostavnim css-om i doradom!-->
+
+<!--Pazi JS kod moze da ubacis bilo gde u HTML stranici tj. <script> tag mozes da ubacis bilo gde. Sustina je da se HTML stranica cita kao obican korak linija po linija koda tj imperativno.-->
+
+<!--Geogebra aplet(objekat) se automatski trpa u DIV elemenat kao wraper! .-->
+
+<!--HTML elementi koji pripadaju nekom HTML elementu mogu da se dobiju kao niz cvorova iz tog elementa.document.write to generate content-->
+
+<!--Kako postoji dinamicko kreiranje HTML koda tako postoji i dinamicko kreiranje JS koda. Poenta je kreirati <script> elemnt dodati ga drugom elementu. I pomocu document.createTextNode(p1) dodati skript kod.-->
+
+<!--Da bi stavio string u string koristis rezlicite vrste navodnika. (Obicno za eval funkciju). Ako ponestana navodnika mozes da stavis string u promenljivu i ond aga unacis u drugi string. ili da lepis deo string sa pormenljivima string.-->
+
+<!--HTML5 standard ono malo HTML osobina vezano za stil izbacuje i prebacuje na CSS. Npr. svojstvo width se prebacuje na CSS. Obrati paznju na te standarde.-->
+
+<!--Tebele imaju duzinu za razliku od lisi koje nemaju dimenzije. verovatno i redovi ili celije imaju dimenzije.-->
+
+<!--Kad pravis table naravi se dva html elementa i figcaption je onda treci. To mozes da istrazis ako te bude zezalo-->
+
+<!--Jos jedan dobar savte da vidis sta ti se pravi preko JS koda je da odes na inspect element i bukvalno vidis sta ti je napravljeno!!!-->
+
+<!--Ovaj INSPECT ELEMENT STVARNO MOZE DA BUDE KORISTAN POGOTOVU KAD NISI SIGURAN STA SE TACNO KREIRA U HTML elementima ili sa kojim osobinama kao sto je bio slucaj sa ggApletom. Inspect elemnt ti pokazae gde ga je smestio , koji mu je ID i u kojem elementu i koje sve osobine ime kao sto su duzina i sirina! I koje je dete po redu u elementu!!!-->
+
+<!--Uzima duzinu elementa zajedno sa granicima. Ume da bude korisno npr. sa obicnim width ne znas duzinu tabela ali sa ovim znas. U sustini i predstavljaju dva odvojena svojstva. Dok je width se odnosi na duzinu tabele kao block elementa, offsetWidth se odnosi manje vise na duzinu samog sadrzaja. -->
+
+<!--Znas sta ovaj INSPECT element je stvarno koristan sa jedne strane ti prikazuje celu strukturu DOM stabla a sa druge (desno) prikazuje css svojstva za svaki elemenat sirinu sadrzaja, unutrasnjih margina , granica itd. U sustini prikazuje ti box model za svaki element!!!-->
+
+<!--Kod jebenog addEventListener onclick ne radi a click radi. VODI RACUNA O OVAKVIM SRANJIMA, dosta si puta tu pravio gresku!-->
+
+<!--U inspect elementa  pored html stoji EV sto oznacava kako da odreaguje na odredjeni dogadjaj.-->
+
+<!--Jos jedna od korisnih stvari da znas je Event objekat, addEventListener, sta znaci kad prosledis funkciji e kao parametar tj. kad je dodas u addEventListener njoj prosledjuju kao parametar dogadja pa onda e.target znaci nad kojim HTML elemntom je dogadjaj izvrse..-->
+
+<!--Funkcije za id-eve radi ali nije lose dodati da kada je element u foksu da se promeni kursosr. Ili da se pojavi znak pored kursora sa oznakom da je elemnt fokusiran tj. da na click ce mu biti pokupljen id.-->
+<!--Kombinacija parent i child je dobar nacin da prolazis kroz DOM stablom i interagujes.-->
+
+<!--element.clientWidth dobija duzinu elementa bez obzira da li ima psotavljenu-->
+
+<!--Funkcija koja sluzi za uzimanje ID elementa. Pri pozivu funkcije se ID postavlja na deafult i ako se ne klikne na element sa ID, default ID ce ostati tj. nista. Ovo je bitno da bi mogao da normalno dodajes elemente na kraj DOM stabla jer koju god akciju uradis ti uzimas ID pa se time remeti ovaj princip.-->
+<script>
+  window.onload = function()
+    {
+    i=parseInt(document.getElementById("i").innerHTML);
+    h=parseInt(document.getElementById("h").innerHTML);
+	buttonIdCounter=parseInt(document.getElementById("buttonIdCounter").innerHTML);
+    }
+</script> <!--Broswear pars line by line and in that order load HTML elemnts in DOM same things is with script. So this script will run when rest of document is loaded together with first script -->
+</body>
+</html> 
